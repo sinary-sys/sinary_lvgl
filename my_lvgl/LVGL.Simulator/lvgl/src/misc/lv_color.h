@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @file lv_color.h
  *
  */
@@ -37,6 +37,7 @@ LV_EXPORT_CONST_INT(LV_COLOR_16_SWAP);
 
 /**
  * Opacity percentages.
+ * 不透明度百分比。
  */
 enum {
     LV_OPA_TRANSP = 0,
@@ -185,6 +186,7 @@ enum {
 
 /**********************
  *      TYPEDEFS
+ *      类型定义
  **********************/
 
 typedef union {
@@ -254,7 +256,7 @@ typedef struct _lv_color_filter_dsc_t {
     void * user_data;
 } lv_color_filter_dsc_t;
 
-
+//颜色选项
 typedef enum {
     LV_PALETTE_RED,
     LV_PALETTE_PINK,

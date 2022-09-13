@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @file lv_style.h
  *
  */
@@ -72,9 +72,10 @@ LV_EXPORT_CONST_INT(LV_IMG_ZOOM_NONE);
 
 /**
  * Possible options how to blend opaque drawings
+ * 如何混合不透明图纸的可能选项
  */
 enum {
-    LV_BLEND_MODE_NORMAL,     /**< Simply mix according to the opacity value*/
+    LV_BLEND_MODE_NORMAL,     /**< Simply mix according to the opacity value只需根据不透明度值混合即可*/
     LV_BLEND_MODE_ADDITIVE,   /**< Add the respective color channels*/
     LV_BLEND_MODE_SUBTRACTIVE,/**< Subtract the foreground from the background*/
     LV_BLEND_MODE_MULTIPLY,   /**< Multiply the foreground and background*/
@@ -162,8 +163,9 @@ typedef union {
 
 /**
  * Enumeration of all built in style properties
- *
+ * 枚举所有内置样式属性
  * Props are split into groups of 16. When adding a new prop to a group, ensure it does not overflow into the next one.
+ * 道具被分成 16 个一组。将一个新道具添加到一个组时，确保它不会溢出到下一个。
  */
 typedef enum {
     LV_STYLE_PROP_INV               = 0,

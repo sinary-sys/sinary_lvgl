@@ -23,6 +23,7 @@
 
 #include "lvgl/lvgl.h"
 #include "lvgl/examples/lv_examples.h"
+#include "lvgl/my_example/my_lv_examples.h"
 #include "lvgl/demos/lv_demos.h"
 #include "lv_drivers/win32drv/win32drv.h"
 
@@ -104,7 +105,7 @@ int main()
     // Demos from lv_examples
     // ----------------------------------
 
-     lv_demo_widgets();           // ok
+    // lv_demo_widgets();           // ok
     // lv_demo_benchmark();
     // lv_demo_keypad_encoder();    // ok
     // lv_demo_music();             // removed from repository
@@ -130,7 +131,7 @@ int main()
     // lv_example_flex_3();
     // lv_example_flex_4();
     // lv_example_flex_5();
-     //lv_example_flex_6();        // ok
+    // lv_example_flex_6();        // ok
 
     // lv_example_grid_1();
     // lv_example_grid_2();
@@ -247,7 +248,7 @@ int main()
 
     // lv_example_textarea_1();    // ok
     // lv_example_textarea_2();
-    // lv_example_textarea_3();    // ok, but not all button have functions
+     lv_example_textarea_3();    // ok, but not all button have functions
 
     // lv_example_tileview_1();    // ok
 
@@ -256,7 +257,7 @@ int main()
     // ----------------------------------
     // My LVGL
     // ----------------------------------
-
+     //  my_lv_example_style_1();
 
     // ----------------------------------
     // Task handler loop

@@ -24,36 +24,48 @@
  *====================*/
 
 /*Color depth: 1 (1 byte per pixel), 8 (RGB332), 16 (RGB565), 32 (ARGB8888)*/
+/*颜色深度：1（每像素 1 个字节）、8 (RGB332)、16 (RGB565)、32 (ARGB8888)*/
 #define LV_COLOR_DEPTH 32
 
 /*Swap the 2 bytes of RGB565 color. Useful if the display has an 8-bit interface (e.g. SPI)*/
+/*交换 RGB565 颜色的 2 个字节。 如果显示器具有 8 位接口（例如 SPI），则很有用*/
 #define LV_COLOR_16_SWAP 0
 
 /*Enable more complex drawing routines to manage screens transparency.
  *Can be used if the UI is above another layer, e.g. an OSD menu or video player.
  *Requires `LV_COLOR_DEPTH = 32` colors and the screen's `bg_opa` should be set to non LV_OPA_COVER value*/
+ /*启用更复杂的绘图例程来管理屏幕透明度。
+   *可以在 UI 位于另一层之上时使用，例如 OSD 菜单或视频播放器。
+   *要求 `LV_COLOR_DEPTH = 32` 颜色并且屏幕的 `bg_opa` 应该设置为非 LV_OPA_COVER 值*/
 #define LV_COLOR_SCREEN_TRANSP 1
 
 /* Adjust color mix functions rounding. GPUs might calculate color mix (blending) differently.
  * 0: round down, 64: round up from x.75, 128: round up from half, 192: round up from x.25, 254: round up */
+/* 调整颜色混合函数舍入。 GPU 可能会以不同的方式计算颜色混合（混合）。
+  * 0：向下舍入，64：从 x.75 向上舍入，128：从一半向上舍入，192：从 x.25 向上舍入，254：向上舍入 */
 #define LV_COLOR_MIX_ROUND_OFS (LV_COLOR_DEPTH == 32 ? 0: 128)
 
 /*Images pixels with this color will not be drawn if they are chroma keyed)*/
-#define LV_COLOR_CHROMA_KEY lv_color_hex(0x00ff00)         /*pure green*/
+/*如果是色度键，则不会绘制具有此颜色的图像像素）*/
+#define LV_COLOR_CHROMA_KEY lv_color_hex(0x00ff00)         /*pure green*//*纯绿色*///实际图片中不显示现在设置的颜色
 
 /*=========================
-   MEMORY SETTINGS
+   MEMORY SETTINGS 内存设置
  *=========================*/
 
 /*1: use custom malloc/free, 0: use the built-in `lv_mem_alloc()` and `lv_mem_free()`*/
-#define LV_MEM_CUSTOM 0
+/*1: 使用自定义 malloc/free, 0: 使用内置的 `lv_mem_alloc()` 和 `lv_mem_free()`*/
+#define LV_MEM_CUSTOM 0  //内存管理 如果宏定义为0 使用lvgl自带的内存管理，如果为1，使用你自己的内存管理
 #if LV_MEM_CUSTOM == 0
     /*Size of the memory available for `lv_mem_alloc()` in bytes (>= 2kB)*/
-    #define LV_MEM_SIZE (1024U * 1024U)          /*[bytes]*/
+    /* `lv_mem_alloc()` 可用的内存大小 (>= 2kB)*/
+    #define LV_MEM_SIZE (1024U * 1024U)          /*[bytes]*/ //交给lvgl堆的大小
 
     /*Set an address for the memory pool instead of allocating it as a normal array. Can be in external SRAM too.*/
-    #define LV_MEM_ADR 0     /*0: unused*/
+    /*为内存池设置一个地址，而不是将其分配为普通数组。 也可以在外部SRAM中。*/
+    #define LV_MEM_ADR 0     /*0: unused*/ //外部sram的地址，注意不要和显示缓冲器冲突
     /*Instead of an address give a memory allocator that will be called to get a memory pool for LVGL. E.g. my_malloc*/
+    /*给出一个内存分配器，而不是一个地址，它将被调用以获取 LVGL 的内存池。 例如。 my_malloc*/
     #if LV_MEM_ADR == 0
         //#define LV_MEM_POOL_INCLUDE your_alloc_library  /* Uncomment if using an external allocator*/
         //#define LV_MEM_POOL_ALLOC   your_alloc          /* Uncomment if using an external allocator*/
@@ -68,23 +80,30 @@
 
 /*Number of the intermediate memory buffer used during rendering and other internal processing mechanisms.
  *You will see an error log message if there wasn't enough buffers. */
+/*在渲染和其他内部处理机制期间使用的中间内存缓冲区的数量。
+   *如果没有足够的缓冲区，您将看到一条错误日志消息。 */
 #define LV_MEM_BUF_MAX_NUM 16
 
 /*Use the standard `memcpy` and `memset` instead of LVGL's own functions. (Might or might not be faster).*/
+/*使用标准的`memcpy`和`memset`代替LVGL自己的函数。 （可能会或可能不会更快）。*/
 #define LV_MEMCPY_MEMSET_STD 0
 
 /*====================
-   HAL SETTINGS
+   HAL SETTINGS hal设置
  *====================*/
 
 /*Default display refresh period. LVG will redraw changed areas with this period time*/
+/*默认显示刷新周期。 LVG会在这段时间内重绘改变的区域*/
 #define LV_DISP_DEF_REFR_PERIOD 10      /*[ms]*/
 
 /*Input device read period in milliseconds*/
+/*输入设备读取周期，以毫秒为单位*/
 #define LV_INDEV_DEF_READ_PERIOD 10     /*[ms]*/
 
 /*Use a custom tick source that tells the elapsed time in milliseconds.
  *It removes the need to manually update the tick with `lv_tick_inc()`)*/
+/*使用自定义的刻度源，以毫秒为单位告知经过的时间。
+ *它消除了使用 `lv_tick_inc()` 手动更新刻度的需要）*/
 #define LV_TICK_CUSTOM 1
 #if LV_TICK_CUSTOM
     #define LV_TICK_CUSTOM_INCLUDE <Windows.h>         /*Header for the system time function*/
@@ -93,6 +112,8 @@
 
 /*Default Dot Per Inch. Used to initialize default sizes such as widgets sized, style paddings.
  *(Not so important, you can adjust it to modify default sizes and spaces)*/
+ /*默认每英寸点数。 用于初始化默认大小，例如小部件大小、样式填充。
+   *（不是那么重要，你可以调整它以修改默认大小和空间）*/
 #define LV_DPI_DEF 130     /*[px/inch]*/
 
 /*=======================
@@ -105,12 +126,17 @@
 
 /*Enable complex draw engine.
  *Required to draw shadow, gradient, rounded corners, circles, arc, skew lines, image transformations or any masks*/
+/*启用复杂的绘制引擎。
+ *需要绘制阴影、渐变、圆角、圆、弧、斜线、图像变换或任何蒙版*/
 #define LV_DRAW_COMPLEX 1
 #if LV_DRAW_COMPLEX != 0
 
     /*Allow buffering some shadow calculation.
     *LV_SHADOW_CACHE_SIZE is the max. shadow size to buffer, where shadow size is `shadow_width + radius`
     *Caching has LV_SHADOW_CACHE_SIZE^2 RAM cost*/
+    /*允许缓冲一些阴影计算。
+     *LV_SHADOW_CACHE_SIZE 是最大值。 阴影大小到缓冲区，其中阴影大小是`shadow_width + radius`
+     *缓存具有 LV_SHADOW_CACHE_SIZE^2 RAM 成本*/
     #define LV_SHADOW_CACHE_SIZE 0
 
     /* Set number of maximally cached circle data.

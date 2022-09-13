@@ -1,4 +1,4 @@
-#include "../lv_examples.h"
+﻿#include "../lv_examples.h"
 #if LV_BUILD_EXAMPLES
 
 /**
@@ -8,10 +8,10 @@ void lv_example_style_2(void)
 {
     static lv_style_t style;
     lv_style_init(&style);
-    lv_style_set_radius(&style, 5);
+    lv_style_set_radius(&style, 5);//设置圆角半径//设置背景的半径。0：无半径，LV_RADIUS_CIRCLE：最大半径。默认值：0。
 
     /*Make a gradient*/
-    lv_style_set_bg_opa(&style, LV_OPA_COVER);
+    lv_style_set_bg_opa(&style, LV_OPA_100); //指定背景的不透明度。默认值：LV_OPA_TRANSP。LV_OPA_COVER //lv_color.h
     static lv_grad_dsc_t grad;
     grad.dir = LV_GRAD_DIR_VER;
     grad.stops_count = 2;
