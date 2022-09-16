@@ -248,7 +248,7 @@ int main()
 
     // lv_example_textarea_1();    // ok
     // lv_example_textarea_2();
-     lv_example_textarea_3();    // ok, but not all button have functions
+    // lv_example_textarea_3();    // ok, but not all button have functions
 
     // lv_example_tileview_1();    // ok
 
@@ -258,6 +258,8 @@ int main()
     // My LVGL
     // ----------------------------------
      //  my_lv_example_style_1();
+         lv_example_ime_pinyin_1();
+
 
     // ----------------------------------
     // Task handler loop

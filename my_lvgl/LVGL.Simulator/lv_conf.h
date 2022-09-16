@@ -643,7 +643,12 @@
 
 /*Enable the examples to be built with the library*/
 #define LV_BUILD_EXAMPLES 1
-
+/**/
+#define LV_USE_LABEL 1
+#define LV_USE_TEXTAREA 1
+#define LV_FONT_SIMSUN_16_CJK 1
+#define LV_USE_IME_PINYIN 1
+#define LV_BUILD_EXAMPLES 1
 /*===================
  * DEMO USAGE
  ====================*/
